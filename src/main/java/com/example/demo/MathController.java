@@ -1,11 +1,10 @@
 package com.example.demo;
 
 
+import exceptions.UnsupportedMathOperationException;
 import org.springframework.web.bind.annotation.*;
 
 
-
-//teste
 @RestController
 public class MathController {
 
@@ -17,7 +16,7 @@ public class MathController {
             @PathVariable(value = "numberTwo") String numberTwo) throws Exception {
 
         if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
-            throw new Exception();
+            throw new UnsupportedMathOperationException("Please enter a valid number");
         }
         return convertToDouble(numberOne) + convertToDouble(numberTwo);
 
