@@ -1,13 +1,16 @@
 package com.example.demo;
 
 
+import Verifications.ConverterNumber;
+import Verifications.Maths;
 import exceptions.UnsupportedMathOperationException;
 import org.springframework.web.bind.annotation.*;
 
 //
 @RestController
 public class MathController {
-//teste
+    private Maths math = new Maths();
+
 
     @RequestMapping(value = "/sum/{numberOne}/{numberTwo}",
             method = RequestMethod.GET)
@@ -15,33 +18,75 @@ public class MathController {
             @PathVariable(value = "numberOne") String numberOne,
             @PathVariable(value = "numberTwo") String numberTwo) throws Exception {
 
-        if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+        if (! ConverterNumber.isNumeric(numberOne) || ! ConverterNumber.isNumeric(numberTwo)) {
             throw new UnsupportedMathOperationException("Please enter a valid number");
         }
-        return convertToDouble(numberOne) + convertToDouble(numberTwo);
+        return  math.sum(Double.parseDouble(numberOne), Double.parseDouble(numberTwo));
 
     }
 
-    private Double convertToDouble(String strNumber) {
-        if (strNumber == null) {
-            return 0D;
+    @RequestMapping(value = "/subtration/{numberOne}/{numberTwo}",
+            method = RequestMethod.GET)
+    public Double subtration(
+            @PathVariable(value = "numberOne") String numberOne,
+            @PathVariable(value = "numberTwo") String numberTwo) throws Exception {
+
+        if (! ConverterNumber.isNumeric(numberOne) || ! ConverterNumber.isNumeric(numberTwo)) {
+            throw new UnsupportedMathOperationException("Please enter a valid number");
         }
-        String number = strNumber.replaceAll(",", ".");
-        if (isNumeric(number)) {
-            return Double.parseDouble(number);
-        }
-        return 0D;
+        return  math.subtration(Double.parseDouble(numberOne), Double.parseDouble(numberTwo));
+
     }
 
+    @RequestMapping(value = "/multiplication/{numberOne}/{numberTwo}",
+            method = RequestMethod.GET)
+    public Double multiplication(
+            @PathVariable(value = "numberOne") String numberOne,
+            @PathVariable(value = "numberTwo") String numberTwo) throws Exception {
 
-    private boolean isNumeric(String strNumber) {
-        if (strNumber == null) {
-            return false;
-
+        if (! ConverterNumber.isNumeric(numberOne) || ! ConverterNumber.isNumeric(numberTwo)) {
+            throw new UnsupportedMathOperationException("Please enter a valid number");
         }
-        String number = strNumber.replaceAll(",", ".");
-        return number.matches("[+-]?[0-9]*\\.?[0-9]+");
+        return  math.multiplication(Double.parseDouble(numberOne), Double.parseDouble(numberTwo));
 
     }
+
+    @RequestMapping(value = "/division/{numberOne}/{numberTwo}",
+            method = RequestMethod.GET)
+    public Double division(
+            @PathVariable(value = "numberOne") String numberOne,
+            @PathVariable(value = "numberTwo") String numberTwo) throws Exception {
+
+        if (! ConverterNumber.isNumeric(numberOne) || ! ConverterNumber.isNumeric(numberTwo)) {
+            throw new UnsupportedMathOperationException("Please enter a valid number");
+        }
+        return math.division(Double.parseDouble(numberOne), Double.parseDouble(numberTwo));
+
+    }
+
+    @RequestMapping(value = "/mean/{numberOne}/{numberTwo}",
+            method = RequestMethod.GET)
+    public Double mean(
+            @PathVariable(value = "numberOne") String numberOne,
+            @PathVariable(value = "numberTwo") String numberTwo) throws Exception {
+
+        if (! ConverterNumber.isNumeric(numberOne) || ! ConverterNumber.isNumeric(numberTwo)) {
+            throw new UnsupportedMathOperationException("Please enter a valid number");
+        }
+        return math.mean(Double.parseDouble(numberOne), Double.parseDouble(numberTwo));
+
+    }
+    @RequestMapping(value = "/squareRoot/{number}")
+    public Double scareRoot(
+            @PathVariable(value = "number") String number)
+            throws Exception {
+        if (! ConverterNumber.isNumeric(number)) {
+            throw new UnsupportedMathOperationException("Please enter a valid number");
+
+        }
+        return math.scareRoot(Double.parseDouble(number));
+
+    }
+
 
 }
