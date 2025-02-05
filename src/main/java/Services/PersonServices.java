@@ -13,9 +13,11 @@ public class PersonServices {
     private Logger logger = Logger.getLogger(PersonServices.class.getName());
 
     public Person findById(String id) {
-        logger.info("Find Person by id: " + id);
+        var contadorId = counter.getAndIncrement();
+        logger.info("Find Person by id: " + contadorId);
 
         Person person = new Person();
+       person.setId(contadorId);
         person.setFirstName("Gabriel");
         person.setLastName("Ferreira");
         person.setGender("Male");
