@@ -1,18 +1,33 @@
 package Model;
 
+import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
+@Table(name = "person")
 public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "first_name", nullable = false, length = 80)
     private String firstName;
+
+    @Column(name = "last_name", nullable = false, length = 80)
     private String lastName;
+
+    @Column(nullable = false, length = 100)
     private String address;
+
+    @Column(nullable = false, length = 6)
     private String gender;
 
-    public Person() {}
+    public Person() {
+    }
 
     public String getFirstName() {
         return firstName;
@@ -25,6 +40,7 @@ public class Person implements Serializable {
     public long getId() {
         return id;
     }
+
     public void setId(long id) {
         this.id = id;
     }
