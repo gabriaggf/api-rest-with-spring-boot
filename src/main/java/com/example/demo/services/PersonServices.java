@@ -1,6 +1,6 @@
-package com.example.demo.Services;
+package com.example.demo.services;
 
-import com.example.demo.Model.Person;
+import com.example.demo.model.Person;
 import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
