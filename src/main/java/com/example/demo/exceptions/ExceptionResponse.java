@@ -7,7 +7,8 @@ public class ExceptionResponse implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    //teste
+    
+    //teste 
     private Date timestamp;
     private String message;
     private String details;
