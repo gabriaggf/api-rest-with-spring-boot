@@ -10,9 +10,11 @@ import java.util.Objects;
 public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    // Teste de commit com novo email
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "first_name", nullable = false, length = 80)
     private String firstName;
